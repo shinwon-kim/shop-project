@@ -2,26 +2,24 @@ import React from "react";
 import { Routes, Route} from "react-router-dom";
 import Login from "../login/Login";
 import Signup from "../login/Signup";
-import Oauth from "../login/Oauth";
 import Home from "../store/Home";
 import Mypage from "../store/Mypage";
-import { User } from "../api/UserApi"; 
+import ProductsView from "../views/ProductsView";
+import Cart from "../store/Cart";
+import { ProductProvider} from "../context/ProductContext";
 
-interface RouterProps {
-    currentUser: User | null;
-    onLogin: (user: User) => void;
-    onLogout: () => void;
-}
-
-const Router = ({currentUser, onLogin, onLogout}: RouterProps):JSX.Element => {
+const Router = ():JSX.Element => {
     return(
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onLogin={onLogin}/>} />
-            <Route path="/signup" element={<Signup onLogin={onLogin}/>} />
-            <Route path="/mypage" element={<Mypage currentUser={currentUser} onLogout={onLogout}/>} />
-            <Route path="/oauth" element={<Oauth />} />
-        </Routes>
+        <ProductProvider>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<ProductsView />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/mypage" element={<Mypage />} />
+                <Route path="/cart" element={<Cart />} />
+            </Routes>
+        </ProductProvider>
     )
 }
 

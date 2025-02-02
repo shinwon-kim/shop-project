@@ -7,7 +7,7 @@ interface DrawerProps{
 }
 
 
-const DrawerBlock = styled.div<{onOpen: boolean}>`
+const DrawerBlock = styled.div<{$isOpen: boolean}>`
     position: absolute;
     top: 0;
     left: 0;
@@ -15,7 +15,7 @@ const DrawerBlock = styled.div<{onOpen: boolean}>`
     height: 100%;
     z-index: 99;
     
-    display: ${({onOpen}) => (onOpen ? "block" : "none") };
+    display: ${({$isOpen}) => ($isOpen ? "block" : "none") };
 
     .drawer{
         width: 250px;
@@ -51,7 +51,7 @@ const DrawerBlock = styled.div<{onOpen: boolean}>`
 
 const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
     return(
-        <DrawerBlock onOpen={onOpen}>
+        <DrawerBlock $isOpen={onOpen}>
             <div className="drawer">
                 <ul>
                     <li>Fashion</li>

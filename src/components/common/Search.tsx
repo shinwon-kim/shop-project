@@ -13,23 +13,26 @@ const SearchBlock = styled.div`
     input{
         position: relative;
         width: 50vw;
-        max-width: 600px;
-        min-width: 200px;
+        max-width: 700px;
+        min-width: 180px;
         height: 30px;
         padding: 6px;
         border-radius: 3px;
         font-family: "Frutiger Bold";
-        border: none;
+        border: 1px solid #bdbdbd;
         outline: none;
         
     }
 
     .searchBtn{
         position: absolute;
-        right: 0;
+        right: 0px;
+        /* top: 50%;
+        transform: translateY(-50%); */
         height: 30px;
         margin: 5px;
         padding: 6px;
+        color: #bdbdbd;
         background: none;
         border: none;
         outline: none;
@@ -39,8 +42,8 @@ const SearchBlock = styled.div`
         position: absolute;
         top: 42px;
         width: 50vw;
-        max-width: 600px;
-        min-width: 200px;
+        max-width: 700px;
+        min-width: 180px;
         height: auto; 
         min-height: 90px;
         padding: 6px;

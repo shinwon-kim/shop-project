@@ -45,7 +45,8 @@
   font-family: 'Frutiger';
   font-style: normal;
   font-weight: normal;
-  src: local('Frutiger'), url('Frutiger.woff') format('woff');
+  src: local('Frutiger'), url('/Frutiger.woff') format('woff');
+  
 }
   
 
@@ -53,5 +54,5 @@
   font-family: 'Frutiger Bold';
   font-style: normal;
   font-weight: normal;
-  src: local('Frutiger Bold'), url('Frutiger_bold.woff') format('woff');
+  src: local('Frutiger Bold'), url('/Frutiger_bold.woff') format('woff');
 }

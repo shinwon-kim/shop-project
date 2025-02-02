@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const FooterBlock = styled.div`
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 7rem;
     bottom: 0;
-    background-color: #272f3d;
+    
+    background-color: #e7e7e7;
 
     p{
-        color: white;
+        color: black;
         text-align: center; 
         line-height: 5rem; 
     }
