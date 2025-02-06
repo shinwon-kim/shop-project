@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import styled from "styled-components";
-import KakaoLogin from "./KakaoLogin";
 import GoogleLogin from "./GoogleLogin";
-
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../firebase";
-
 
 const StyledLink = styled(Link)`
   font-family: Frutiger;
@@ -17,8 +14,8 @@ const StyledLink = styled(Link)`
 const LoginBlock = styled.div`
   width: 100%;
   height: 100vh;
-  padding-top: 50px; //네비게이션 바 크기에 맞게 여백 조정 */
-  padding-bottom: 100px; /* 푸터 크기에 맞게 여백 추가 */
+  padding-top: 50px; 
+  padding-bottom: 100px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,31 +105,37 @@ const Login = ():JSX.Element =>{
       }
     }
   }
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+  
 
-    return (
-        <LoginBlock>
-            <h1>Sign In</h1>
-            <GoogleLogin />
+  return (
+      <LoginBlock>
+          <h1>Sign In</h1>
+          <GoogleLogin />
 
-            <div className="line"> 
-              <span> OR </span>   
-            </div>
-            <div className="errorMessage">
-              {error}
-            </div>
+          <div className="line"> 
+            <span> OR </span>   
+          </div>
+          <div className="errorMessage">
+            {error}
+          </div>
 
-            <label htmlFor="mail">Email</label>
-            <input type="email" placeholder="EMAIL" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            
-            <label htmlFor="password">Password</label>
-            <input type="password" placeholder="PASSWORD" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <label htmlFor="mail">Email</label>
+          <input type="email" placeholder="EMAIL" id="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={handleKeyPress}/>
+          
+          <label htmlFor="password">Password</label>
+          <input type="password" placeholder="PASSWORD" id="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={handleKeyPress}/>
 
-            <button type="submit" onClick={handleLogin}> Continue </button>
+          <button type="submit" onClick={handleLogin} > Continue </button>
 
-            <StyledLink to="/signup">Create your account</StyledLink>
+          <StyledLink to="/signup">Create your account</StyledLink>
 
-        </LoginBlock>
-    )
+      </LoginBlock>
+  )
 }
 
 export default Login;

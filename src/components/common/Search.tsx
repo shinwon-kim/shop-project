@@ -1,34 +1,29 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { fetchProducts, Product } from "../api/ProductApi";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 
 const SearchBlock = styled.div`
-   
     position: relative;
     display: flex;
     flex-direction: column;
-
 
     input{
         position: relative;
         width: 50vw;
         max-width: 700px;
-        min-width: 180px;
+        min-width: 150px;
         height: 30px;
         padding: 6px;
         border-radius: 3px;
         font-family: "Frutiger Bold";
         border: 1px solid #bdbdbd;
         outline: none;
-        
     }
 
     .searchBtn{
         position: absolute;
         right: 0px;
-        /* top: 50%;
-        transform: translateY(-50%); */
         height: 30px;
         margin: 5px;
         padding: 6px;
@@ -43,7 +38,7 @@ const SearchBlock = styled.div`
         top: 42px;
         width: 50vw;
         max-width: 700px;
-        min-width: 180px;
+        min-width: 150px;
         height: auto; 
         min-height: 90px;
         padding: 6px;
@@ -59,6 +54,10 @@ const SearchBlock = styled.div`
         visibility: visible;
     }
 
+    .searchResult{
+        display: block;
+        margin: 10px 0;
+    }
     .searchIcon{
         font-size: 12px;
         margin: 5px;
@@ -66,9 +65,16 @@ const SearchBlock = styled.div`
         border: none;
         outline: none;
         color: #8f8f8f;
-
     }
 
+    @media (max-width: 800px) {
+        input{
+            width: 40vw;
+        }
+        .searchResultBox{
+            width: 40vw;
+        }
+    }
 `;
 
 
@@ -111,7 +117,9 @@ const Search = ():JSX.Element => {
     let resultContent;
     if(searchResults.length > 0){
         resultContent = searchResults.map((product)=>(
-            <p key={product.id}><i className="fa fa-search searchIcon"></i>{product.title} </p>
+            <Link to={`/product/${product.id}`} key={product.id} className="searchResult">
+                <i className="fa fa-search searchIcon"/>{product.title} 
+            </Link>
         ))
     }
     return (

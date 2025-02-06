@@ -1,12 +1,17 @@
 import React from "react";
 import { Routes, Route} from "react-router-dom";
+import { ProductProvider} from "../context/ProductContext";
+import Home from "../store/Home";
 import Login from "../login/Login";
 import Signup from "../login/Signup";
-import Home from "../store/Home";
 import Mypage from "../store/Mypage";
 import ProductsView from "../views/ProductsView";
 import Cart from "../store/Cart";
-import { ProductProvider} from "../context/ProductContext";
+import Fashion from "../views/Fashion";
+import Jewelery from "../views/Jewelery";
+import Electronics from "../views/Electronics";
+import Grocery from "../views/Grocery";
+import Sports from "../views/Sports";
 
 const Router = ():JSX.Element => {
     return(
@@ -18,6 +23,11 @@ const Router = ():JSX.Element => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/fashion" element={<Fashion />} />
+                <Route path="/jewelery" element={<Jewelery />} />
+                <Route path="/electronics" element={<Electronics />} />
+                <Route path="/grocery" element={<Grocery />} />
+                <Route path="/sports" element={<Sports />} />
             </Routes>
         </ProductProvider>
     )

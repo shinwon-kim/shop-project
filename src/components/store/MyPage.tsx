@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import {useState, useEffect} from "react";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { doc, getDoc } from "firebase/firestore";
 import { signOut , User} from "firebase/auth";
 import { auth, db } from "../../firebase";
-
 
 const MyPageBlock = styled.div`
     padding-top: 120px; 
@@ -14,13 +13,22 @@ const MyPageBlock = styled.div`
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
-
+    margin: 0 auto;
 
     .userInfo{
         font-size: 34px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+
+         & h2{
+            margin: 20px 0;
+        }
+        &::after{
+            content: "";
+            width: 900px;
+            border: 1px solid #c2c2c2;
+            display: block;
+        }
     }
 
     .logoutBtn{
@@ -30,31 +38,35 @@ const MyPageBlock = styled.div`
     }
 
     .wishList{
-  
         display: flex;
-        gap: 5px;
-        padding: 30px 50px;
         flex-direction: column;
+        gap: 5px;
+        min-height: 300px;
+        min-width: 500px;
+        padding: 30px 50px;
         background-color: #f3f3f3;
         margin: 50px;
-        
     }
 
     .wishlistItem{
-
         height: auto;
-        display: flex;
         border: 1px solid gray;
         border-radius: 8px;
-        justify-content: flex-start; /* 왼쪽 정렬 */
-        align-items: center;
+        
         background-color: white;
         padding: 10px; 
         gap: 15px; 
         
+        & .itemDetails{
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+        }
 
         & img{
             width: 100px;
+            height: 100px;
+            object-fit: contain;
         }
         & h4{
 
@@ -62,8 +74,6 @@ const MyPageBlock = styled.div`
     }
 
 `;
-
-
 
 
 const Mypage = ():JSX.Element => {
@@ -74,7 +84,6 @@ const Mypage = ():JSX.Element => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             setUser(currentUser);
-
         });
 
         return () => unsubscribe(); 
@@ -85,16 +94,13 @@ const Mypage = ():JSX.Element => {
             const userRef = doc(db, "users", user.uid);
             getDoc(userRef).then((userSnap) => {
                 if (userSnap.exists()) {
-                    const wishlistData = userSnap.data().wishlist || [];
+                    const wishlistData = userSnap.data().user_wishlist || [];
                     setWishlist(wishlistData);
                 }
             });
         }
     }, [user]);
 
-    
-
-    
     return(
         <MyPageBlock>
             <div className="userInfo">
@@ -108,20 +114,17 @@ const Mypage = ():JSX.Element => {
                 <h3>Whish List</h3>
                 {wishlist.length > 0 ? wishlist?.map((item, index) =>(
                     <div key={index} className="wishlistItem">
-                        <img src={item.image} alt ={item.title}></img>
-                        <h4>{item.title}</h4>
+                        <Link to={`/product/${item.id}`} className="itemDetails">
+                            <img src={item.image} alt ={item.title}/>
+                            <h4>{item.title}</h4>
+                        </Link>
                     </div>
-                )): (<p>No items in your wishlist</p>)}
+                )): (<p>No items in your Wish List</p>)}
             </div>
 
             <button className="logoutBtn" onClick={()=>{signOut(auth); navigate("/");}}>
                 Log out
             </button>
-
-          
-
-            
-
         </MyPageBlock>
     )
 }

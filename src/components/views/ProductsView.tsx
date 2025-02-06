@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useProductContext } from "../context/ProductContext";
-import { Link } from "react-router-dom";
 import {auth, db} from "../../firebase";
 import {doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
 import Rating from "../common/Rating";
+import { useCart } from "../context/CartContext";
+import BreadCrumb from "../common/BreadCrumb";
 
 const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 80px;
+  padding-bottom: 150px;
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -21,7 +22,6 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  
 
   .contentWrapper {
     display: flex;
@@ -43,7 +43,7 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
 
   .productImg img{
     width: 300px;
-    height: auto;
+    height: 300px;
     object-fit: contain;
     padding: 20px;
     border-radius: 10px;
@@ -117,6 +117,9 @@ const ProductsView = (): JSX.Element => {
   const [wish, setWish] = useState<string>("/heart.png");
   const [isWished, setIsWished] = useState(false);
 
+
+  const { cartlist, setCartlist} = useCart();
+
   const product = products.find((p) => p.id === Number(id));
 
   useEffect(()=>{
@@ -132,31 +135,69 @@ const ProductsView = (): JSX.Element => {
     const userSnap = await getDoc(userRef);
 
     if(userSnap.exists()){
-      const wishlist = userSnap.data().wishlist || [];
+      const wishlist = userSnap.data().user_wishlist || [];
       const wished = wishlist.some((item:any) => item.id === product.id);
       setIsWished(wished);
       setWish(wished ? "/heart_red.png" : "/heart.png");
     }
   };
 
-  const handleWish = async () => {
-    if(!auth.currentUser){
-      navigate("/login");
-      return;
+  const handleAction = async (x: string) => {
+    if (!auth.currentUser) {
+        navigate("/login");
+        return;
     }
+
     const userRef = doc(db, "users", auth.currentUser.uid);
-    if(isWished){
-      await updateDoc(userRef, {
-        wishlist: arrayRemove(product),
-      });
-      setWish("/heart.png");
-      setIsWished(false);
-    } else{
-      await setDoc(userRef, {wishlist: arrayUnion(product)}, {merge: true});
-      setWish("/heart_red.png");
-      setIsWished(true);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+        console.log("User not found");
+        return;
     }
-  };
+
+    const productWithQuantity = { ...product, quantity };
+    if (!product) {
+      console.log("Product not found");
+      return;
+  }
+
+    if (x === "cart") {
+        // 장바구니 상태 체크
+        const cartlist = userSnap.data().user_cartlist || [];
+        const isProductInCart = cartlist.some((item: any) => item.id === product.id);
+
+        if(isProductInCart){
+          alert("Product is already in cart");
+        }
+        await updateDoc(userRef, {
+          user_cartlist: arrayUnion(productWithQuantity),
+        });
+
+        navigate("/cart");
+        setCartlist((prevCartlist) => [...prevCartlist, productWithQuantity]);
+
+    }
+
+    if (x === "wish") {
+        if (isWished) {
+            // 찜 목록에서 제거
+            await updateDoc(userRef, {
+                user_wishlist: arrayRemove(product),
+            });
+            setWish("/heart.png");
+            setIsWished(false);
+        } else {
+            // 찜 목록에 추가
+            await setDoc(userRef, {
+                user_wishlist: arrayUnion(product),
+            }, { merge: true });
+            setWish("/heart_red.png");
+            setIsWished(true);
+        }
+    }
+};
+
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(1, parseInt(e.target.value));
@@ -170,6 +211,7 @@ const ProductsView = (): JSX.Element => {
 
   return (
     <ProductsViewBlock isDescriptionFull={showFullDescription}>
+      <BreadCrumb category={product?.category} crumb="" />
       <div className="contentWrapper">
         <div className="productImg">
           <img src={product?.image} alt={product?.title} />
@@ -190,7 +232,6 @@ const ProductsView = (): JSX.Element => {
           </div>
           <div className="productRate">
             <Rating rate ={product?.rating?.rate} count={product?.rating?.count}/>
-            {/* <p>({product?.rating?.rate})</p> */}
           </div>
           <div className="quantitySelector">
             <label htmlFor="">Quantity </label>
@@ -201,19 +242,17 @@ const ProductsView = (): JSX.Element => {
       
       <div className="actionButtons">
         <div className="wishList">
-          <img className="likeBtn" src={wish} alt="" onClick={handleWish}/>
+          <img className="likeBtn" src={wish} alt="" onClick={(x)=>handleAction("wish")}/>
         </div>
         <div className="cartBtn">
-          <Link to="/cart">
-            <button type="submit">Add to Cart</button>
-          </Link>
+            <button type="submit" onClick={(x)=>handleAction("cart")}>Add to Cart</button>
         </div>
       </div>
 
       <div className="recommendList">
         <h3>Recommend</h3>
         <div>
-          pants
+          
         </div>
       </div>
     </ProductsViewBlock>

@@ -4,16 +4,11 @@ import {BrowserRouter} from "react-router-dom";
 import Nav from "./components/layout/Nav";
 import Footer from "./components/layout/Footer"; 
 import Router from "./components/router/router";
-// import { UserInfo } from "./components/api/UserApi"; 
-import { auth } from "./firebase";
-// import Products from "./components/store/products";
-
+import { CartProvider } from "./components/context/CartContext";
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const [currentUser, setCurrentUser] = useState<UserInfo | null>(null);
-  const user = auth.currentUser;
-  // console.log(`This is user info: ${user}`);
+
   useEffect(() =>{
     const timer = setTimeout(()=>{
       setIsLoading(false);
@@ -21,29 +16,27 @@ function App() {
     return () => clearTimeout(timer);
   },[]);
 
-  // const handleLogin = (user :UserInfo) =>{
-  //   setCurrentUser(user);
-  // }
-  // const handleLogout = () =>{
-  //   setCurrentUser(null);
-  // }
-
 
   if(isLoading){
     return(
-      <div className="loading-screen">
-          <img src="/loading_.gif" alt="Loading..." />
+      // <div className="loading-screen">
+      //     <img src="/load.gif" alt="Loading..." />
+      // </div>
+      <div className="loader-container">
+        <div className="loader"></div>
       </div>
     )
   }
 
   return (
     <BrowserRouter>
-      <Nav />
-      <Router />
-      <Footer/>
+      <CartProvider>
+        <Nav />
+        <Router />
+        <Footer/>
+      </CartProvider>
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;

@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import {GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult} from "firebase/auth";
+import {GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {auth, db} from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";  
 import styled from "styled-components";
 import googleLoginImg from "./googlelogin.png";
 
 
-
 const GoogleLoginBtn = styled.img`
     cursor: pointer;
     
 `;
-
 
 
 const GoogleLogin = () :JSX.Element =>{
@@ -71,16 +69,8 @@ const GoogleLogin = () :JSX.Element =>{
             console.error("Google 로그인 실패:", error);
             setError("Google 로그인에 실패했습니다. 다시 시도해주세요.");
         }
-
-
-        // signInWithRedirect(auth, provider);
-
-        
-
     }
 
-
-    
     return(
         <div>
             

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState} from "react";
 import styled from "styled-components";
-// import { userApi, User} from "../api/UserApi";
+import { useNavigate } from "react-router-dom";
 import {createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { collection, doc, setDoc} from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc} from "firebase/firestore";
+
 
 
 const SignupBlock = styled.div`
@@ -24,7 +23,6 @@ const SignupBlock = styled.div`
         flex-direction: column;
         text-align: left;
     }
-
 
     input{
         width: 300px;
@@ -72,8 +70,6 @@ const Signup = ():JSX.Element =>{
             firstname: "",
         }
     });
-    
-    
     
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -140,52 +136,76 @@ const Signup = ():JSX.Element =>{
         }
     };
     
-    return(
+    
+    return (
         <SignupBlock>
             <h1>Create account</h1>
             <p>Please fill in this form to create an account.</p>
-            {error && <p style={{ color: "red", fontSize: "1rem"}}>{error}</p>}
-            
-
-            {/* <div className="inputBox">
-                <label htmlFor="username">User name *</label>
-                <input type="text" name="username" id="username" placeholder="USERNAME" value={formData.username} onChange={handleInputChange} required/>
-            </div> */}
-
-            <div className="inputBox">
-                <label htmlFor="email">Email *</label>
-                <input type="email" name="email" id="email" placeholder="EMAIL ADDRESS" value={formData.email} onChange={handleInputChange} required/>
-            </div>
-            <div className="inputBox">
-                <label htmlFor="password">Password *</label>
-                <input type="password" name="password" id="password" placeholder="PASSWORD" value={formData.password} onChange={handleInputChange} required/>
-            </div>
-
-        
-{/* 
-            <div className="inputBox">
-                <label htmlFor="phone">Phone *</label>
-                <input type="number" name="phone" id="phone" placeholder="MOBILE PHONE NUMBER" value={formData.phone} onChange={handleInputChange} required/>
-            </div>*/}
-
-            <div className="inputBox">
-                <label htmlFor="lastname">Last name *</label>
-                <input type="text" name="name.lastname" id="lastname" placeholder="LAST NAME" value={formData.name.lastname} onChange={handleInputChange} required/>
-            </div>
-
-            <div className="inputBox">
-                <label htmlFor="firstname">First name *</label>
-                <input type="text" name="name.firstname" id="firstname" placeholder="FIRST NAME" value={formData.name.firstname} onChange={handleInputChange} required/>
-            </div> 
-
-            <p>By creating an account you agree to our <a href="https://policies.google.com/"><u>Terms & Privacy</u></a>.</p>
-            
-            <button type="submit" onClick={handleSubmit}>
-                Create an Account
-            </button>
-
+            {error && <p style={{ color: "red", fontSize: "1rem" }}>{error}</p>}
+    
+            <form onSubmit={handleSubmit}>
+                <div className="inputBox">
+                    <label htmlFor="email">Email *</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="EMAIL ADDRESS"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="inputBox">
+                    <label htmlFor="password">Password *</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="PASSWORD"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+    
+                <div className="inputBox">
+                    <label htmlFor="lastname">Last name *</label>
+                    <input
+                        type="text"
+                        name="name.lastname"
+                        id="lastname"
+                        placeholder="LAST NAME"
+                        value={formData.name.lastname}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+    
+                <div className="inputBox">
+                    <label htmlFor="firstname">First name *</label>
+                    <input
+                        type="text"
+                        name="name.firstname"
+                        id="firstname"
+                        placeholder="FIRST NAME"
+                        value={formData.name.firstname}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+    
+                <p>
+                    By creating an account you agree to our{" "}
+                    <a href="https://policies.google.com/">
+                        <u>Terms & Privacy</u>
+                    </a>.
+                </p>
+    
+                <button type="submit">Create an Account</button>
+            </form>
         </SignupBlock>
-    )
+    );    
 }
 
 export default Signup;

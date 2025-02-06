@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Link }  from "react-router-dom";
 
 interface DrawerProps{
     onOpen: boolean;
     onClose: () => void;
 }
-
 
 const DrawerBlock = styled.div<{$isOpen: boolean}>`
     position: absolute;
@@ -44,8 +44,6 @@ const DrawerBlock = styled.div<{$isOpen: boolean}>`
         background: rgba(0,0,0,0.7);
 
     }
-
-
 `;
 
 
@@ -54,9 +52,11 @@ const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
         <DrawerBlock $isOpen={onOpen}>
             <div className="drawer">
                 <ul>
-                    <li>Fashion</li>
-                    <li>Jewelery</li>
-                    <li>Electronics</li>
+                    <li><Link to="/fashion">Fashion</Link></li>
+                    <li><Link to="/jewelery">Jewelery</Link></li>
+                    <li><Link to="/electronics">Electronics</Link></li>
+                    <li><Link to="/grocery">Grocery</Link></li>
+                    <li><Link to="/sports">Sports</Link></li>
                 </ul>
             </div>
             <div className ="backdrop" onClick={onClose}></div>

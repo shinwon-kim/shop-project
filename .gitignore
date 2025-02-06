@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-
+# .env files to avoid exposing environment secrets
 .env
+
+# Ignore firebase.ts file specifically
+firebase.ts
