@@ -19,9 +19,6 @@ function App() {
 
   if(isLoading){
     return(
-      // <div className="loading-screen">
-      //     <img src="/load.gif" alt="Loading..." />
-      // </div>
       <div className="loader-container">
         <div className="loader"></div>
       </div>

@@ -116,29 +116,24 @@ const NavBlock = styled.div`
 
             justify-content: space-between;
 
-        & .title{
-            margin: 0 5px;
-        } 
+            & .title{
+                margin: 0 5px;
+            } 
 
         .userInfo{
             margin: 0 5px;
         
+            & p{
+                display: inline-block;
+                font-weight: bold;
+                margin: 0 5px; 
+                font-size: 14px;  
+            }
 
-        & p{
-            display: inline-block;
-            font-weight: bold;
-            margin: 0 5px; 
-            font-size: 14px;  
-        }
-
-        & svg{
-            margin-right: 5px;
-        }
-        
-    }
-         
-    };
-        
+            & svg{
+                margin-right: 5px;
+            }
+        }};
     }
 `;
 
