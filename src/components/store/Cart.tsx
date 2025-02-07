@@ -17,8 +17,6 @@ const CartBlock = styled.div`
     align-items: center;
     margin: 0 auto;
     position: relative;
-    
-    /* border: 1px solid black; */
 
     .cartHeader{
         margin: 20px 0;
@@ -128,15 +126,11 @@ const CartBlock = styled.div`
             border: 1px solid #c2c2c2;
             display: block;
         }
-
     }
 `;
 
 
 const Cart = (): JSX.Element => {
-    // const [user, setUser] = useState<User | null>(null);
-    // const [cartlist, setCartlist] = useState<any[]>([]);
-    // const [cartlistCount, setCartlistCount] = useState<number>(0);
     const [subtotal, setSubtotal] = useState<number>(0);
     const { cartlist, setCartlist, cartCount, setCartCount, user, setUser } = useCart();
 
@@ -199,7 +193,6 @@ const Cart = (): JSX.Element => {
                 user_cartlist: updatedCartlist
             });
         }
-
     };
 
 
@@ -224,9 +217,9 @@ const Cart = (): JSX.Element => {
                             </div>
                         </Link>
                             <div className="cartItemCount">
-                                <button className="decrease" onClick={((x)=>handleCount("dec", item.id))}>-</button>
+                                <button className="decrease" onClick={(()=>handleCount("dec", item.id))}>-</button>
                                 <div>{item.quantity}</div>
-                                <button className="increase" onClick={((x)=>handleCount("inc", item.id))}>+</button>
+                                <button className="increase" onClick={(()=>handleCount("inc", item.id))}>+</button>
                             </div>
                             <div className="cartItemPrice">
                                 <p>${item.price}</p>

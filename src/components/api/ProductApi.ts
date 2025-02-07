@@ -18,7 +18,6 @@ export interface Product {
 
 export const fetchProducts = async ():Promise<Product[]> => {
     try{
-        // const response = await axios.get<Product[]>("https://fakestoreapi.com/products");
         const response = await axios.get<Product[]>("https://67a354f931d0d3a6b783254d.mockapi.io/product");
         return response.data;
 

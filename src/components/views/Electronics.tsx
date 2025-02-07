@@ -2,7 +2,7 @@ import Category from "../common/Category";
 
 const Electronics = ():JSX.Element => {
     return(
-        <Category category={"electronics"}/>
+        <Category category={"electronics"} />
     )
 };
 

@@ -14,7 +14,7 @@ export const useUserInfo = () => {
             const unsubscribeFirestore = onSnapshot(userRef, (docSnap) => {
                 if (docSnap.exists()) {
                     setUserInfo(docSnap.data());
-                } else {
+                } else{
                     console.log("Firestore에서 사용자 정보 없음.");
                     setUserInfo(null);
                 }
@@ -28,7 +28,7 @@ export const useUserInfo = () => {
         const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 await fetchUserInfo(user);
-            } else {
+            } else{
                 setUserInfo(null);
             }
         }); 
@@ -46,7 +46,7 @@ export const useUserInfo = () => {
             const userSnap = await getDoc(userRef);
             if (userSnap.exists()) {
                 setUserInfo(userSnap.data()); // Firestore에서 가져온 사용자 정보 저장
-            } else {
+            } else{
                 console.log("사용자 정보가 없습니다.");
                 setUserInfo(null);
             }
@@ -57,8 +57,6 @@ export const useUserInfo = () => {
             setLoading(false);
         }
     };
-
-
 
     return { userInfo, loading };
 };

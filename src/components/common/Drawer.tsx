@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Link }  from "react-router-dom";
 
@@ -48,15 +47,16 @@ const DrawerBlock = styled.div<{$isOpen: boolean}>`
 
 
 const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
+
     return(
         <DrawerBlock $isOpen={onOpen}>
             <div className="drawer">
                 <ul>
-                    <li><Link to="/fashion">Fashion</Link></li>
-                    <li><Link to="/jewelery">Jewelery</Link></li>
-                    <li><Link to="/electronics">Electronics</Link></li>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li><Link to="/sports">Sports</Link></li>
+                    <li><Link to="/fashion" onClick={onClose}>Fashion</Link></li>
+                    <li><Link to="/jewelery" onClick={onClose}>Jewelery</Link></li>
+                    <li><Link to="/electronics" onClick={onClose}>Electronics</Link></li>
+                    <li><Link to="/grocery" onClick={onClose}>Grocery</Link></li>
+                    <li><Link to="/sports" onClick={onClose}>Sports</Link></li>
                 </ul>
             </div>
             <div className ="backdrop" onClick={onClose}></div>

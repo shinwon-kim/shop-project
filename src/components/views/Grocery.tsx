@@ -1,6 +1,5 @@
 import Category from "../common/Category";
 
-
 const Grocery = ():JSX.Element => {
 
     return(

@@ -95,7 +95,6 @@ const Filtering = ({ setPriceRange, setColor }: FilterProps): JSX.Element => {
                     <option value="black">Black</option>
                     <option value="silver">Silver</option>
                     <option value="gold">Gold</option>
-
                 </select>
             </div>
         </FilterWrapper>

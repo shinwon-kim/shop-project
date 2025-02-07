@@ -6,7 +6,6 @@ import { auth, db } from "../../firebase";
 import { doc, setDoc} from "firebase/firestore";
 
 
-
 const SignupBlock = styled.div`
     width: 100%;
     height: 100vh;
@@ -36,7 +35,6 @@ const SignupBlock = styled.div`
             background-color: #ddd;
             outline: none;
         }
-        
     }
 
     label{
@@ -47,13 +45,13 @@ const SignupBlock = styled.div`
         width: 200px;
         height: 40px;
         margin: 15px 0;
-  }
+    }
 
   p{
     font-size: 0.8em;
     font-family: Frutiger;
     color: #696969;
-  }
+    }
 
 
 `;

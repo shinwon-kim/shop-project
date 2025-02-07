@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Loading from "../common/Loading";
 import Filtering from "../common/Filtering";
 import BreadCrumb from "../common/BreadCrumb";
+import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 const CategoryWrapper = styled.div`
     width: 100%;
@@ -115,6 +116,11 @@ const Pagination = styled.div`
         border-radius: 100%;
         
     }
+    & .page:hover, .page.active{
+        background-color: transparent;
+        color: black;
+        
+    }
 `;
 
 interface CategoryProps{
@@ -123,7 +129,7 @@ interface CategoryProps{
 
 const Category = ({category}:CategoryProps): JSX.Element => {
     const { products } = useProductContext();
-    const [section, setSection] = useState<string>("all");
+    const [section, setSection] = useState<string | null>("all");
     const [minPrice, setMinPrice] = useState<number>(0);
     const [maxPrice, setMaxPrice] = useState<number>(1000);
     const [selectedColor, setSelectedColor] = useState<string>("");
@@ -131,6 +137,8 @@ const Category = ({category}:CategoryProps): JSX.Element => {
     
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 6;
+    const [canPagePrev, setCanPagePrev] = useState(false);
+    const [canPageNext, setCanPageNext] = useState(true);
 
     useEffect(() => {
         if (category === "fashion") {
@@ -140,6 +148,7 @@ const Category = ({category}:CategoryProps): JSX.Element => {
             setCategoryProducts(section === "all" ? fashionProducts : fashionProducts.filter((product) => product.category === section));
         } else {
             setCategoryProducts(products.filter((product) => product.category === category));
+            setSection("");
         }
     }, [category, section, products]);
 
@@ -156,13 +165,25 @@ const Category = ({category}:CategoryProps): JSX.Element => {
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(filteredProducts.length / itemsPerPage); i++) {
+    const lastPageNumber = Math.ceil(filteredProducts.length / itemsPerPage);
+    for (let i = 1; i <= lastPageNumber; i++) {
         pageNumbers.push(i);
     }
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [currentPage]);
+        setCanPagePrev(currentPage > 1);
+        setCanPageNext(currentPage < lastPageNumber);
+    }, [currentPage, lastPageNumber]);
+    
+    const handlePageArrow = (page: "prev" | "next") => {
+        if (page === "prev" && canPagePrev) {
+            setCurrentPage(currentPage - 1);
+        } else if (page === "next" && canPageNext) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
 
     return (
         <CategoryWrapper>
@@ -195,11 +216,20 @@ const Category = ({category}:CategoryProps): JSX.Element => {
 
             {/* 페이지네이션 버튼 */}
             <Pagination>
+                <button className="page" disabled={!canPagePrev} style={{color: canPagePrev ? "black": "gray"}}>
+
+                    <IoIosArrowBack onClick={()=>handlePageArrow("prev")} />
+                </button>
+
                 {pageNumbers.map((number) => (
+   
                     <button key={number} className={currentPage === number ? "active": ""} onClick={() => setCurrentPage(number)}>
                         {number}
                     </button>
                 ))}
+                <button className="page" disabled={!canPageNext} style={{color: canPageNext ? "black": "gray"}}>
+                    <IoIosArrowForward onClick={()=>handlePageArrow("next")}/>
+                </button>
             </Pagination>
         </CategoryWrapper>
     );

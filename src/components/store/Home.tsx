@@ -177,11 +177,8 @@ const Home = (): JSX.Element => {
           <Loading />
         ) : (
           <div className="scrollContainer">
-            <button 
-              className="scrollButton left"
-              onClick={() => handleScroll("left")}
-              disabled={!canScrollLeft}
-              style={{ visibility: canScrollLeft ? "visible" : "hidden" }}>
+            <button className="scrollButton left" onClick={() => handleScroll("left")}
+              disabled={!canScrollLeft} style={{ visibility: canScrollLeft ? "visible" : "hidden" }}>
               <IoIosArrowBack  />
             </button>
 
@@ -197,11 +194,8 @@ const Home = (): JSX.Element => {
               ))}
             </div>
 
-            <button
-              className="scrollButton right"
-              onClick={() => handleScroll("right")}
-              disabled={!canScrollRight}
-              style={{ visibility: canScrollRight ? "visible" : "hidden" }}>
+            <button className="scrollButton right" onClick={() => handleScroll("right")}
+              disabled={!canScrollRight} style={{ visibility: canScrollRight ? "visible" : "hidden" }}>
               <IoIosArrowForward />
             </button>
           </div>

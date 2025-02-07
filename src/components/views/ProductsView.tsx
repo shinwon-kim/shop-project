@@ -117,7 +117,6 @@ const ProductsView = (): JSX.Element => {
   const [wish, setWish] = useState<string>("/heart.png");
   const [isWished, setIsWished] = useState(false);
 
-
   const { cartlist, setCartlist} = useCart();
 
   const product = products.find((p) => p.id === Number(id));

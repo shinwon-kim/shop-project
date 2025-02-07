@@ -5,8 +5,6 @@ const LoadBlock = styled.div`
     
 `
 
-
-
 const Loading = (): JSX.Element => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -19,13 +17,13 @@ const Loading = (): JSX.Element => {
   },[]);
 
   return(
-    <div className="loader-container">
+    <LoadBlock className="loader-container">
         {isLoading ? 
             (<div className="loader">
                 {/* <img src="/load.gif" alt="" /> */}
             </div>) 
         : null}
-    </div>
+    </LoadBlock>
   )
 
 

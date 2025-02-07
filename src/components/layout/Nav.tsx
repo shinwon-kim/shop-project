@@ -58,7 +58,7 @@ const NavBlock = styled.div`
             position: absolute;
             height: 15px;
             width: 15px;
-            border-radius: 50px;
+            border-radius: 100%;
             background-color: #7700ff;
             line-height: 15px;
             text-align: center;
@@ -84,7 +84,6 @@ const NavBlock = styled.div`
         & .drawerBtn{
             background: none;
             border: none;
-    
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,7 +112,6 @@ const NavBlock = styled.div`
     }
     @media (max-width: 800px) {
         .nav{
-
             justify-content: space-between;
 
             & .title{
@@ -148,14 +146,11 @@ const Nav = ():JSX.Element => {
             setUser(currentUser);
         });
         return () => unsubscribe();
-    },[]);
+    },[setUser]);
 
     useEffect(()=>{
         if(userInfo){
             setFirstName(userInfo?.user_firstname||"Guest");
-        }
-        else{
-            setFirstName("Guest");
         }
         
     },[userInfo]);
@@ -168,7 +163,6 @@ const Nav = ():JSX.Element => {
         
         <NavBlock>  
             <div className="nav">
-
                 <Link to="/" className="title">SHOP</Link>
                 <Search/>
                 <div className="userInfo">

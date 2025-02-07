@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 interface IBreadCrumbsProps {
     readonly category?: string;
-    readonly crumb?: string;
+    readonly crumb?: string | null;
 }
 
 const BreadCrumbWrapper = styled.div`
