@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
 import styled from "styled-components";
 import Loading from "../common/Loading";
+import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -104,12 +105,13 @@ const HomeBlock = styled.div`
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     z-index: 10;
+    font-size: 15px;
 
     &:hover {
-      background-color: #3e00a1;
+      background-color: #3e00a1d4;
     }
 
     &.left {
@@ -175,12 +177,12 @@ const Home = (): JSX.Element => {
           <Loading />
         ) : (
           <div className="scrollContainer">
-            <button
+            <button 
               className="scrollButton left"
               onClick={() => handleScroll("left")}
               disabled={!canScrollLeft}
               style={{ visibility: canScrollLeft ? "visible" : "hidden" }}>
-              ←
+              <IoIosArrowBack  />
             </button>
 
             <div className="productWrapper" ref={productWrapperRef}>
@@ -200,7 +202,7 @@ const Home = (): JSX.Element => {
               onClick={() => handleScroll("right")}
               disabled={!canScrollRight}
               style={{ visibility: canScrollRight ? "visible" : "hidden" }}>
-              →
+              <IoIosArrowForward />
             </button>
           </div>
         )}

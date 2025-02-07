@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import {BrowserRouter } from "react-router-dom";
 import "./App.css";
-import {BrowserRouter} from "react-router-dom";
+import { CartProvider } from "./components/context/CartContext";
 import Nav from "./components/layout/Nav";
+import ScrollTop from "../src/components/common/ScrollTop"
 import Footer from "./components/layout/Footer"; 
 import Router from "./components/router/router";
-import { CartProvider } from "./components/context/CartContext";
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -29,6 +30,7 @@ function App() {
     <BrowserRouter>
       <CartProvider>
         <Nav />
+        <ScrollTop />
         <Router />
         <Footer/>
       </CartProvider>
