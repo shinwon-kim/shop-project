@@ -54,18 +54,24 @@ const NavBlock = styled.div`
             margin-right: 20px;
             vertical-align: middle; 
         }
-        & .cartCounts{
-            position: absolute;
-            height: 15px;
-            width: 15px;
-            border-radius: 100%;
-            background-color: #7700ff;
-            line-height: 15px;
-            text-align: center;
-            right: 0;
-            bottom: 20px;
-            font-size: 12px;
-            color: white;
+
+        .cart{
+            position: relative;
+
+            & .cartCounts{
+                position: absolute;
+                height: 15px;
+                width: 15px;
+                border-radius: 100%;
+                background-color: #7700ff;
+                line-height: 15px;
+                text-align: center;
+                right: 15px;
+                bottom: 20px;
+                font-size: 12px;
+                color: white;
+            }
+
         }
     }
 
@@ -175,13 +181,13 @@ const Nav = ():JSX.Element => {
                                     <path d="M12 6.92969C9.93 6.92969 8.25 8.60969 8.25 10.6797C8.25 12.7097 9.84 14.3597 11.95 14.4197C11.98 14.4197 12.02 14.4197 12.04 14.4197C12.06 14.4197 12.09 14.4197 12.11 14.4197C12.12 14.4197 12.13 14.4197 12.13 14.4197C14.15 14.3497 15.74 12.7097 15.75 10.6797C15.75 8.60969 14.07 6.92969 12 6.92969Z" fill="#000000"/>
                                 </svg>
                             </Link>
-                            <Link to="/cart">
-                            <div className="cartCounts">
-                                {cartCount}
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
-                                <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
+                            <Link to="/cart" className="cart">
+                                <div className="cartCounts">
+                                    {cartCount}
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
                             </Link>
                         </>
                     ):(
@@ -199,7 +205,7 @@ const Nav = ():JSX.Element => {
             <div className="navShop">
                 <Drawer onOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}/>
                 <button className="drawerBtn" onClick={toggleDrawer}>
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50" >
                         <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
                     </svg>
                 </button>

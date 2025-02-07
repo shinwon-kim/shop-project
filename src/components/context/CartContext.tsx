@@ -35,7 +35,7 @@ export const CartProvider = ({children}: CartProviderProps) =>{
     useEffect(()=>{
         if(user){
             const fetchCartData = async() =>{
-                const userRef = doc(db, "user", user.uid);
+                const userRef = doc(db, "users", user.uid);
                 const userSnap = await getDoc(userRef);
                 if(userSnap.exists()){
                     const cartlistData = userSnap.data().user_cartlist || [];
