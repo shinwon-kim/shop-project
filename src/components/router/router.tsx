@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route} from "react-router-dom";
 import { ProductProvider} from "../context/ProductContext";
 import Home from "../store/Home";

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Loading from "../common/Loading";
 import Filtering from "../common/Filtering";
-import BreadCrumb from "../common/BreadCrumb";
+import BreadCrumb from "./BreadCrumb";
 import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 const CategoryWrapper = styled.div`
