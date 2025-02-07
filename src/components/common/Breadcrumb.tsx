@@ -12,7 +12,7 @@ const BreadCrumbWrapper = styled.div`
     color: #acacac;
     width: 100%;
     text-align: left;
-    margin: 0 0 1px 50px;
+    margin: 0 0 10px 50px;
     a {
         text-decoration: none;
     }

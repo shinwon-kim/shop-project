@@ -15,7 +15,6 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
   width: 100%;
   max-width: 1200px;
   min-height: 100vh; 
-
   text-align: center;
   display: flex;
   flex-direction: column; 
@@ -29,6 +28,7 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
     width: 100%;
     max-width: 900px; 
     gap: 30px; 
+    margin-top: 15px;
   }
   .productInfo {
     flex: 1;

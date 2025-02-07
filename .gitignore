@@ -27,4 +27,4 @@ dist-ssr
 .env
 
 # Ignore firebase.ts file specifically
-firebase.ts
+# firebase.ts

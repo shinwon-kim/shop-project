@@ -76,7 +76,7 @@ const MyPageBlock = styled.div`
 `;
 
 
-const Mypage = ():JSX.Element => {
+const MyPage = ():JSX.Element => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
     const [wishlist, setWishlist] = useState<any[]>([]);
@@ -129,4 +129,4 @@ const Mypage = ():JSX.Element => {
     )
 }
 
-export default Mypage;
+export default MyPage;

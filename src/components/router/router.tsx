@@ -4,7 +4,7 @@ import { ProductProvider} from "../context/ProductContext";
 import Home from "../store/Home";
 import Login from "../login/Login";
 import Signup from "../login/Signup";
-import Mypage from "../store/Mypage";
+import MyPage from "../store/MyPage";
 import ProductsView from "../views/ProductsView";
 import Cart from "../store/Cart";
 import Fashion from "../views/Fashion";
@@ -21,7 +21,7 @@ const Router = ():JSX.Element => {
                 <Route path="/product/:id" element={<ProductsView />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/mypage" element={<Mypage />} />
+                <Route path="/mypage" element={<MyPage />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/fashion" element={<Fashion />} />
                 <Route path="/jewelery" element={<Jewelery />} />
