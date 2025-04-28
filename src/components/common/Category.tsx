@@ -12,7 +12,7 @@ const CategoryWrapper = styled.div`
     max-width: 1200px;
     min-height: 100vh;
     padding-top: 120px; 
-    padding-bottom: 300px;
+    padding-bottom: 230px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +20,8 @@ const CategoryWrapper = styled.div`
     gap: 20px;
     margin: 0 auto;
     flex-wrap: nowrap;
+    box-sizing: border-box;
+    overflow-x: hidden;
 
     h3{
         margin: 0;
@@ -28,28 +30,27 @@ const CategoryWrapper = styled.div`
 
 const Sidebar = styled.div`
     width: 700px;
-    margin-right: 20px;
     display: flex;
     justify-content: center;
-    gap: 20px;
-
+    gap: 16px;
+    padding: 1px;
     & button{
         width: 200px;
     }
 
     @media(max-width: 1000px) {
+        /* gap: 20px; */
         button{
-            width: 170px;
+            width: 150px;
         }
     }
 `;
-
 
 const CategoryBlock = styled.div`
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);  
-    gap: 20px;
+    gap: 18px;
     justify-items: center;
     align-items: start;
     margin: 0 auto;
@@ -57,23 +58,23 @@ const CategoryBlock = styled.div`
 
     .product{
         width: 100%;
-        max-width: 350px;  
+        max-width: 300px;  
         height: 400px;
         border: 2px solid #cecece;
         border-radius: 10px;
         cursor: pointer;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        padding: 20px;
+        padding: 15px;
 
         & .productDetail{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 1px;
         }
 
         & img{

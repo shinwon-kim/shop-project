@@ -81,16 +81,16 @@ const HomeBlock = styled.div`
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     
     & .productDetail {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 1px;
     }
     
     & img {
