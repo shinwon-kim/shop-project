@@ -25,8 +25,6 @@ const Loading = (): JSX.Element => {
         : null}
     </LoadBlock>
   )
-
-
 }
 
 
