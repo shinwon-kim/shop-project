@@ -26,7 +26,7 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
   @media (max-width: 800px) {
     padding-top: 130px;
     padding-bottom: 180px;
-    }
+  }
 
   .contentWrapper {
     display: flex;
@@ -101,8 +101,8 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
     margin-right: 100px;
 
     @media (max-width: 800px) {
-      justify-content: center;
-      margin-right: 0px;
+      justify-content: flex-end;
+      margin-right: 23px;
     }
   }
 

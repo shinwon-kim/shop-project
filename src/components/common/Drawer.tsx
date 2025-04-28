@@ -21,6 +21,8 @@ const DrawerBlock = styled.div<{$isOpen: boolean}>`
         height: 200vh;
         padding: 10px;
         background-color: #F5F5F5;
+        display: flex;
+        flex-direction: column;
         
         & ul{
             display: flex;
@@ -32,7 +34,13 @@ const DrawerBlock = styled.div<{$isOpen: boolean}>`
         & li{
             padding: 10px 0px;
         }
+
+        .mypage{
+            margin-top: auto; /* 남는 공간 다 먹고 아래로 밀기 */
+            padding: 30px 0;
+        }
     }
+
     .backdrop{
         position: fixed;
         top: 0;
@@ -57,6 +65,11 @@ const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
                     <li><Link to="/electronics" onClick={onClose}>Electronics</Link></li>
                     <li><Link to="/grocery" onClick={onClose}>Grocery</Link></li>
                     <li><Link to="/sports" onClick={onClose}>Sports</Link></li>
+                    <li>
+                        <div className="mypage">
+                            <Link to="/mypage">My Page</Link>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div className ="backdrop" onClick={onClose}></div>

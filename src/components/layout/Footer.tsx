@@ -11,10 +11,10 @@ const FooterBlock = styled.div`
     ul{
         padding: 0;
         display: flex;
-        gap: 30px;
+        gap: 20px;
         justify-content: center;
         list-style: none;
-        margin: 30px 0;
+        margin: 30px;
     }
 
     p{

@@ -33,6 +33,7 @@ const SearchBlock = styled.div`
         outline: none;
         cursor: pointer;
     }
+
     .searchResultBox{
         position: absolute;
         top: 42px;
@@ -48,6 +49,8 @@ const SearchBlock = styled.div`
         visibility: hidden;
         color: black;
         text-align: left;
+        font-size: 13px;
+        
     }
 
     &:focus-within div{
@@ -58,6 +61,11 @@ const SearchBlock = styled.div`
         display: block;
         margin: 10px 0;
     }
+
+    .searchResult:hover{
+        background-color: rgba(240, 240, 240, 0.8);
+    }
+
     .searchIcon{
         font-size: 12px;
         margin: 5px;
@@ -66,13 +74,14 @@ const SearchBlock = styled.div`
         outline: none;
         color: #8f8f8f;
     }
-
+    
     @media (max-width: 800px) {
         input{
             width: 40vw;
         }
         .searchResultBox{
             width: 40vw;
+            font-size: 11px;
         }
     }
 `;
