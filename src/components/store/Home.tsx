@@ -9,8 +9,8 @@ const HomeWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
-  padding-top: 100px; 
-  padding-bottom: 300px;
+  padding-top: 120px; 
+  padding-bottom: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,15 +20,17 @@ const HomeWrapper = styled.div`
 
 const Banner = styled.div`
   width: 100%;
+  height: clamp(15rem, 25vw, 25rem);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 
-  img {
+    img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
   }
 `;
 
@@ -42,7 +44,7 @@ const HomeBlock = styled.div`
 
   h2 {
     text-align: left;
-    margin: 100px 0 10px 20px;
+    margin: 30px 0 10px 20px;
     padding-left: 10px;
     border-left: 4px solid #4900c6;
   }
@@ -73,6 +75,7 @@ const HomeBlock = styled.div`
     width: 300px;
     min-width: 300px;
     height: 400px;
+    background-color: white;
     border: 3px solid #cecece;
     border-radius: 10px;
     cursor: pointer;
@@ -81,7 +84,7 @@ const HomeBlock = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-
+    
     & .productDetail {
       display: flex;
       flex-direction: column;
@@ -89,14 +92,19 @@ const HomeBlock = styled.div`
       align-items: center;
       gap: 10px;
     }
-
+    
     & img {
       width: 100%;
       height: 250px;
       object-fit: contain;
     }
+    
+    &:hover{
+      border: 3px solid #4900c6;
+    }
+   
   }
-
+  
   .scrollButton {
     position: absolute;
     top: 50%;
