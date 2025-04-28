@@ -86,8 +86,11 @@ const NavBlock = styled.div`
         flex-direction: row;
         align-items: center;
         color: black;
+        gap: clamp(10px, 2vw, 30px); 
 
         & .drawerBtn{
+            padding: 0;
+            margin: 0;
             background: none;
             border: none;
             display: flex;
@@ -96,34 +99,36 @@ const NavBlock = styled.div`
         }
 
         & svg{
-            margin-left: 30px;
+            margin-left: clamp(5px, 8vw, 110px);
             fill: black;
             cursor: pointer;
         }
 
         & ul{
             margin: 0;
+            padding: 0;
             display: flex;
             list-style: none;
-        };
+        }
         
         & li{
-            margin: 10px;
-
+            margin: 0 clamp(5px, 2vw, 15px); // 좌우 여백을 유동적으로
+            font-size: clamp(13px, 1.2vw, 16px); // 텍스트도 반응형
         }
         
         & li:hover{
             color:  #4931c1;
         }
     }
-    @media (max-width: 800px) {
+
+    @media (max-width: 1200px) {
         .nav{
             justify-content: space-between;
 
             & .title{
                 margin: 0 5px;
             } 
-
+        }
         .userInfo{
             margin: 0 5px;
         
@@ -137,7 +142,12 @@ const NavBlock = styled.div`
             & svg{
                 margin-right: 5px;
             }
-        }};
+        }
+        .navShop{
+            & svg{
+                margin-left: 5px;
+            }
+        }
     }
 `;
 
