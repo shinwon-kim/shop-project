@@ -42,7 +42,6 @@ const FilterWrapper = styled.div`
         flex-direction: column;
 
     }
-    
 `;
 
 type FilterProps = {

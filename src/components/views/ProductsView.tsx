@@ -10,7 +10,7 @@ import BreadCrumb from "../common/BreadCrumb";
 
 const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
   padding-top: 80px;
-  padding-bottom: 150px;
+  padding-bottom: 130px;
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -21,20 +21,34 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  overflow-x: hidden;
+
+  @media (max-width: 800px) {
+    padding-top: 130px;
+    padding-bottom: 180px;
+    }
 
   .contentWrapper {
     display: flex;
-    flex-direction: row; 
     width: 100%;
     max-width: 900px; 
     gap: 30px; 
     margin-top: 15px;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
+
   .productInfo {
     flex: 1;
     display: flex;
     flex-direction: column; 
     align-items: flex-start;
+
+    @media (max-width: 800px) {
+      padding: 23px;
+    }
   }
 
   .productTitle{
@@ -85,6 +99,11 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
     gap: 30px;
     margin-top: 20px; 
     margin-right: 100px;
+
+    @media (max-width: 800px) {
+      justify-content: center;
+      margin-right: 0px;
+    }
   }
 
   .cartBtn button{
@@ -248,12 +267,10 @@ const ProductsView = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="recommendList">
+      {/* <div className="recommendList">
         <h3>Recommend</h3>
-        <div>
-          
-        </div>
-      </div>
+      
+      </div> */}
     </ProductsViewBlock>
   );
 };
