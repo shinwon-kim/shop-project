@@ -14,8 +14,8 @@ const StyledLink = styled(Link)`
 const LoginBlock = styled.div`
   width: 100%;
   height: 100vh;
-  padding-top: 50px; 
-  padding-bottom: 100px; 
+  padding-top: 20px; 
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,9 @@ const LoginBlock = styled.div`
   }
 
   input{
-    width: 250px;
+    width: 100vw;
+    min-width: 200px;
+    max-width: 350px;
     height: 35px;
     margin: 15px 0;
     border-radius: 2px;
@@ -56,7 +58,7 @@ const LoginBlock = styled.div`
     align-items: center;
     margin: 20px 0;
     text-align: center;
-    width: 250px;
+    width: 350px;
   }
 
   .line::before,

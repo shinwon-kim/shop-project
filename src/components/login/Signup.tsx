@@ -1,22 +1,23 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { doc, setDoc} from "firebase/firestore";
-
+import { doc, setDoc } from "firebase/firestore";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 const SignupBlock = styled.div`
     width: 100%;
     height: 100vh;
-    padding-top: 120px; 
-    padding-bottom: 120px;
+    padding-top: 30px; 
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     .inputBox{
+        position: relative;
         margin: 10px;
         display: flex;
         flex-direction: column;
@@ -24,7 +25,9 @@ const SignupBlock = styled.div`
     }
 
     input{
-        width: 300px;
+        width: 100vw;
+        min-width: 200px;
+        max-width: 400px;
         height: 30px;
         padding: 10px;
         margin: 5px;
@@ -53,12 +56,17 @@ const SignupBlock = styled.div`
     color: #696969;
     }
 
-
+    .show{
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        cursor: pointer;
+    }
 `;
 
 const Signup = ():JSX.Element =>{
     const navigate = useNavigate();
-
+    const [show, setShow] = useState(false);
     const [error, setError] = useState<string>("");
     const [formData, setFormData] = useState({
         email: "",
@@ -71,7 +79,7 @@ const Signup = ():JSX.Element =>{
     
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
-  
+        
         if(name.includes(".")){
             const [parent, child] = name.split(".");
             setFormData((prevData)=>({
@@ -88,6 +96,10 @@ const Signup = ():JSX.Element =>{
             }));
         }
         
+    };
+
+    const handlesShow = ()=>{
+        setShow(!show);
     };
 
     const handleSubmit = async(e: React.FormEvent) => {
@@ -133,8 +145,7 @@ const Signup = ():JSX.Element =>{
             }
         }
     };
-    
-    
+
     return (
         <SignupBlock>
             <h1>Create account</h1>
@@ -156,8 +167,9 @@ const Signup = ():JSX.Element =>{
                 </div>
                 <div className="inputBox">
                     <label htmlFor="password">Password *</label>
+
                     <input
-                        type="password"
+                        type={show ? "password" : "text"}
                         name="password"
                         id="password"
                         placeholder="PASSWORD"
@@ -165,6 +177,11 @@ const Signup = ():JSX.Element =>{
                         onChange={handleInputChange}
                         required
                     />
+                    <div className="show" onClick={handlesShow}>
+                        {
+                            show ? <IoEyeOffOutline/> : <IoEyeOutline/>
+                        }
+                    </div>
                 </div>
     
                 <div className="inputBox">
