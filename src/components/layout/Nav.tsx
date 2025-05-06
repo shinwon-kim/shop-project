@@ -61,7 +61,13 @@ const NavBlock = styled.div`
         }
 
         .mypage svg{
-            @media (max-width: 800px) {
+            width: 3px;
+            height: 33px;
+            
+
+        }
+        @media (max-width: 800px) {
+            .mypage svg {
                 display: none;
             }
         }
@@ -236,7 +242,6 @@ const Nav = ():JSX.Element => {
                     <li><Link to="/electronics">Electronics</Link></li>
                     <li><Link to="/grocery">Grocery</Link></li>
                     <li><Link to="/sports">Sports</Link></li>
-                    <li><Link to="/mypage">My Page</Link></li>
                 </ul>
             </div>
         </NavBlock>
