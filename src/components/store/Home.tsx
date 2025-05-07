@@ -9,13 +9,18 @@ const HomeWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
-  padding-top: 120px; 
-  padding-bottom: 250px;
+  padding-top: 100px; 
+  padding-bottom: 190px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;  
   margin: 0 auto;
+
+  @media (max-width: 800px) {
+    padding-top: 40px; 
+    padding-bottom: 70px;
+  }
 `;
 
 const Banner = styled.div`
@@ -59,12 +64,16 @@ const HomeBlock = styled.div`
   .productWrapper {
     display: flex;
     flex-wrap: nowrap;
-    gap: 30px;
+    gap: 29px;
     padding: 10px 0;
     overflow-x: auto;
     width: 100%;
     max-width: 100%;
     scroll-behavior: smooth;
+
+    @media (max-width: 800px) {
+      gap: 20px;
+    }
   }
 
   .productWrapper::-webkit-scrollbar {
@@ -72,9 +81,9 @@ const HomeBlock = styled.div`
   }
 
   .product {
-    width: 300px;
-    min-width: 300px;
-    height: 400px;
+    width: 250px;
+    min-width: 250px;
+    height: 270px;
     background-color: white;
     border: 3px solid #cecece;
     border-radius: 10px;
@@ -95,12 +104,22 @@ const HomeBlock = styled.div`
     
     & img {
       width: 100%;
-      height: 250px;
+      height: 140px;
       object-fit: contain;
     }
     
     &:hover{
       border: 3px solid #4900c6;
+    }
+
+    @media (max-width: 800px) {
+      width: 200px;
+      min-width: 200px;
+      height: 230px;
+      font-size: 0.8rem;
+      & img {
+        height: 110px;
+      }
     }
    
   }
@@ -117,6 +136,10 @@ const HomeBlock = styled.div`
     color: white;
     z-index: 10;
     font-size: 15px;
+
+    @media (max-width: 800px) {
+      font-size: 10px;
+    }
 
     &:hover {
       background-color: #3e00a1d4;
