@@ -61,10 +61,8 @@ const NavBlock = styled.div`
         }
 
         .mypage svg{
-            width: 3px;
+            width: 33px;
             height: 33px;
-            
-
         }
         @media (max-width: 800px) {
             .mypage svg {
