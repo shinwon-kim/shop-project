@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link }  from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 interface DrawerProps{
     onOpen: boolean;
@@ -55,6 +56,7 @@ const DrawerBlock = styled.div<{$isOpen: boolean}>`
 
 
 const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
+    const {user} = useCart();
 
     return(
         <DrawerBlock $isOpen={onOpen}>
@@ -67,7 +69,14 @@ const Drawer = ({onOpen, onClose}: DrawerProps):JSX.Element => {
                     <li><Link to="/sports" onClick={onClose}>Sports</Link></li>
                     <li>
                         <div className="mypage">
-                            <Link to="/mypage">My Page</Link>
+                            {
+                                user ? (
+                                    <Link to="/mypage" onClick={onClose}>My Page</Link>
+                                ) : (
+                                    <Link to="/login" onClick={onClose}> Login</Link>
+                                )
+                            }
+                            
                         </div>
                     </li>
                 </ul>
