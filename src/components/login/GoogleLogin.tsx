@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
-import { User, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { User, GoogleAuthProvider, signInWithPopup, getRedirectResult } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";  
 import styled from "styled-components";
@@ -57,36 +57,30 @@ const GoogleLogin = () :JSX.Element =>{
     const handleGoogleLogin = async () =>{
         setError(null);
         const provider = new GoogleAuthProvider();
-        const isMobile = /Mobi/i.test(window.navigator.userAgent)
+        // const isMobile = /Mobi/i.test(window.navigator.userAgent)
 
         try{
+            const result = await signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
+            const user = result.user;
+            console.log("Google 로그인 성공:", result);
 
-            if(isMobile) {
-                await signInWithRedirect(auth, provider);
-            } else{
+            await handleUser(user);
 
-                const result = await signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
-                const user = result.user;
-                console.log("Google 로그인 성공:", result);
+            // const userRef = doc(db, "users", user.uid);
+            // const docSnap = await getDoc(userRef);
 
-                await handleUser(user);
-    
-                // const userRef = doc(db, "users", user.uid);
-                // const docSnap = await getDoc(userRef);
-    
-                // if(!docSnap.exists()){
-                //     const [firstname, lastname] = detectLanguage(user.displayName);
-                //     await setDoc(userRef, {
-                //         uid: user.uid,
-                //         user_email: user.email,
-                //         user_firstname: firstname,
-                //         user_lastname: lastname,
-                // });
-                //     console.log("새로운 유저 정보가 Firestore에 저장되었습니다.");
-                // }else {
-                //     console.log("이미 유저 정보가 Firestore에 존재합니다.");
-                // }
-            }
+            // if(!docSnap.exists()){
+            //     const [firstname, lastname] = detectLanguage(user.displayName);
+            //     await setDoc(userRef, {
+            //         uid: user.uid,
+            //         user_email: user.email,
+            //         user_firstname: firstname,
+            //         user_lastname: lastname,
+            // });
+            //     console.log("새로운 유저 정보가 Firestore에 저장되었습니다.");
+            // }else {
+            //     console.log("이미 유저 정보가 Firestore에 존재합니다.");
+            // }
 
         }catch(error:any){
             console.error("Google 로그인 실패:", error);
