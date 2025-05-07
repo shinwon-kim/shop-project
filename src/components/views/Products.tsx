@@ -35,9 +35,19 @@ const ProductBlock = styled.div`
     & img{
       width: 270px;
       height: 270px;
-
       object-fit: contain;
     }
+
+    @media (max-width: 800px) {
+      & img{
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+
+  .product:hover{
+    border: 2px solid #4900c6;
   }
 `
 

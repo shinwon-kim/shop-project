@@ -29,19 +29,22 @@ const CategoryWrapper = styled.div`
 `;
 
 const Sidebar = styled.div`
-    width: 700px;
+    width: 600px;
     display: flex;
     justify-content: center;
     gap: 16px;
     padding: 1px;
+    
     & button{
-        width: 200px;
+        width: 180px;
+        font-size: 0.7rem;
     }
 
-    @media(max-width: 1000px) {
-        /* gap: 20px; */
+    @media(max-width: 800px) {
+        gap: 15px;
         button{
-            width: 150px;
+            width: 90px;
+            font-size: 0.5rem;
         }
     }
 `;

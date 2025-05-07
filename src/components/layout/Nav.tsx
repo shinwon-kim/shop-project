@@ -86,7 +86,11 @@ const NavBlock = styled.div`
                 font-size: 12px;
                 color: white;
             }
-
+            @media (max-width: 800px) {
+                & .cartCounts{
+                    right: 4px;
+                }
+            }
         }
     }
 

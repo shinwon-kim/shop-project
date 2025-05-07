@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
-  padding-top: 100px; 
+  padding-top: 110px; 
   padding-bottom: 190px;
   display: flex;
   flex-direction: column;
@@ -18,8 +18,12 @@ const HomeWrapper = styled.div`
   margin: 0 auto;
 
   @media (max-width: 800px) {
-    padding-top: 40px; 
+    padding-top: 30px; 
     padding-bottom: 70px;
+  }
+  @media (max-width: 500px) {
+    padding-top: 0px; 
+    padding-bottom: 30px;
   }
 `;
 

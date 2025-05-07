@@ -173,7 +173,6 @@ const Cart = (): JSX.Element => {
         }
     }, [cartlist, user]);
 
-
     const handleDelete = async(itemID: string) =>{
         if (!user) return;
         const userRef = doc(db, "users", user.uid);
@@ -207,7 +206,6 @@ const Cart = (): JSX.Element => {
             });
         }
     };
-
 
     return(
         <CartBlock>
