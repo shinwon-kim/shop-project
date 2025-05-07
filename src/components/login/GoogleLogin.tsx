@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
-import { GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { User, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";  
 import styled from "styled-components";
@@ -33,6 +33,26 @@ const GoogleLogin = () :JSX.Element =>{
             }
         }
     };
+
+    const handleUser = async (user: User) => {
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+    
+        if (!docSnap.exists()) {
+          const [firstname, lastname] = detectLanguage(user.displayName);
+          await setDoc(userRef, {
+            uid: user.uid,
+            user_email: user.email,
+            user_firstname: firstname,
+            user_lastname: lastname,
+          });
+          console.log("새 유저 정보 저장됨");
+        } else {
+          console.log("기존 유저 정보 존재");
+        }
+    
+        navigate("/");
+      };
     
     const handleGoogleLogin = async () =>{
         setError(null);
@@ -48,31 +68,45 @@ const GoogleLogin = () :JSX.Element =>{
                 const result = await signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
                 const user = result.user;
                 console.log("Google 로그인 성공:", result);
-    
-                const userRef = doc(db, "users", user.uid);
-                const docSnap = await getDoc(userRef);
-    
-                if(!docSnap.exists()){
-                    const [firstname, lastname] = detectLanguage(user.displayName);
-                    await setDoc(userRef, {
-                        uid: user.uid,
-                        user_email: user.email,
-                        user_firstname: firstname,
-                        user_lastname: lastname,
-                });
-                    console.log("새로운 유저 정보가 Firestore에 저장되었습니다.");
-                }else {
-                    console.log("이미 유저 정보가 Firestore에 존재합니다.");
-                }
-            }
 
-            navigate("/");
+                await handleUser(user);
+    
+                // const userRef = doc(db, "users", user.uid);
+                // const docSnap = await getDoc(userRef);
+    
+                // if(!docSnap.exists()){
+                //     const [firstname, lastname] = detectLanguage(user.displayName);
+                //     await setDoc(userRef, {
+                //         uid: user.uid,
+                //         user_email: user.email,
+                //         user_firstname: firstname,
+                //         user_lastname: lastname,
+                // });
+                //     console.log("새로운 유저 정보가 Firestore에 저장되었습니다.");
+                // }else {
+                //     console.log("이미 유저 정보가 Firestore에 존재합니다.");
+                // }
+            }
 
         }catch(error:any){
             console.error("Google 로그인 실패:", error);
             setError("Google 로그인에 실패했습니다. 다시 시도해주세요.");
         }
     }
+
+    useEffect(() => {
+        const fetchRedirectResult = async () => {
+          try {
+            const result = await getRedirectResult(auth);
+            if (result?.user) {
+              await handleUser(result.user);
+            }
+          } catch (error) {
+            console.error("리디렉션 결과 처리 실패:", error);
+          }
+        };
+        fetchRedirectResult();
+      }, []);
 
     return(
         <div>
