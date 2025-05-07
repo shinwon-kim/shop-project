@@ -7,6 +7,7 @@ const FooterBlock = styled.div`
     background-color: #e7e7e7;
     display: flex;
     flex-direction: column;
+    font-size: 1rem;
 
     ul{
         padding: 0;
@@ -21,6 +22,18 @@ const FooterBlock = styled.div`
         color: black;
         text-align: center; 
         line-height: 20px; 
+    }
+
+    @media (max-width: 800px) {
+
+        ul{
+            gap: 13px;
+            margin: 20px;
+        }
+        p{
+            line-height: 10px; 
+        }
+        font-size: 0.7rem;
     }
 `;
 

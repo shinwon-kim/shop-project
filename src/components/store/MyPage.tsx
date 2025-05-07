@@ -15,9 +15,10 @@ const MyPageBlock = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    overflow-x: hidden;
 
     .userInfo{
-        font-size: 34px;
+        font-size: 30px;
         margin-bottom: 30px;
 
          & h2{
@@ -26,8 +27,12 @@ const MyPageBlock = styled.div`
         &::after{
             content: "";
             width: 900px;
-            border: 1px solid #c2c2c2;
+            border: 1px solid #dedddd;
             display: block;
+        }
+
+        @media (max-width: 800px) {
+            font-size: 24px;
         }
     }
 
@@ -40,19 +45,39 @@ const MyPageBlock = styled.div`
     .wishList{
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 7px;
         min-height: 300px;
         min-width: 500px;
         padding: 30px 50px;
         background-color: #f3f3f3;
-        margin: 50px;
+        margin: 30px;
+        font-size: 1rem;
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 800px) {
+            min-width: 450px;
+            font-size: 0.8rem;
+            h3 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            min-width: 360px;
+            font-size: 0.6rem;
+            h3 {
+                font-size: 0.9rem;
+            }
+        }
     }
 
     .wishlistItem{
         height: auto;
-        border: 1px solid gray;
+        border: 1px solid #cacaca;
         border-radius: 8px;
-        
         background-color: white;
         padding: 10px; 
         gap: 15px; 
@@ -68,13 +93,21 @@ const MyPageBlock = styled.div`
             height: 100px;
             object-fit: contain;
         }
-        & h4{
 
+        @media (max-width: 800px) {
+            & img{
+                width: 80px;
+                height: 80px;
+            }
+        }
+        @media (max-width: 500px) {
+            & img{
+                width: 60px;
+                height: 60px;
+            }
         }
     }
-
 `;
-
 
 const MyPage = ():JSX.Element => {
     const navigate = useNavigate();
@@ -106,9 +139,9 @@ const MyPage = ():JSX.Element => {
             <div className="userInfo">
                 <h2>{user?.displayName?.toUpperCase()}</h2>
             </div>
-            <div>
+            {/* <div>
                 Point 13,400 | Coupon 5 | Reivew 3
-            </div>
+            </div> */}
 
             <div className="wishList">
                 <h3>Whish List</h3>
