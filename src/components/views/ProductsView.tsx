@@ -9,8 +9,8 @@ import { useCart } from "../context/CartContext";
 import BreadCrumb from "../common/BreadCrumb";
 
 const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
-  padding-top: 80px;
-  padding-bottom: 130px;
+  padding-top: 20px;
+  padding-bottom: 100px;
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -25,7 +25,7 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
 
   @media (max-width: 800px) {
     padding-top: 130px;
-    padding-bottom: 180px;
+    padding-bottom: 160px;
   }
 
   .contentWrapper {
@@ -53,6 +53,10 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
 
   .productTitle{
     text-align: left;
+    font-size: 1.2rem;
+    @media (max-width: 800px) {
+      font-size: 1.1rem;
+    }
   }
 
   .productImg img{
@@ -62,11 +66,16 @@ const ProductsViewBlock = styled.div<{ isDescriptionFull: boolean }>`
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #d2d2d2;
+
+    @media (max-width: 800px) {
+      width: 270px;
+      height: 270px;
+    }
   }
 
   .productPrice{
     margin: 10px 0;
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .productDescript{
@@ -235,7 +244,7 @@ const ProductsView = (): JSX.Element => {
           <img src={product?.image} alt={product?.title} />
         </div>
         <div className="productInfo">
-          <h2 className="productTitle">{product?.title}</h2>
+          <p className="productTitle">{product?.title}</p>
           <p className="productPrice">${product?.price}</p>
           <div className="descriptionWrapper">
             <p className="productDescript">

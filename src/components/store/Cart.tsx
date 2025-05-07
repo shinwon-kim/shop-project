@@ -8,7 +8,7 @@ import { FiX } from "react-icons/fi";
 
 const CartBlock = styled.div`
     width: 100%;
-    padding-top: 120px; 
+    padding-top: 80px; 
     padding-bottom: 120px;
     max-width: 1200px;
     min-height: 100vh;
@@ -24,7 +24,7 @@ const CartBlock = styled.div`
         &::after{
             content: "";
             width: 100vw;
-            border: 1px solid #c2c2c2;
+            border: 1px solid #e2e2e2;
             display: block;
             flex-grow: 1;
         }
@@ -49,7 +49,7 @@ const CartBlock = styled.div`
     }
     
     .cartItem{
-        border: 1px solid #c2c2c2;
+        border: 1px solid #d3d3d3;
         border-radius: 10px;
         margin: 10px;
         padding: 10px 5px;
@@ -58,6 +58,7 @@ const CartBlock = styled.div`
         align-items: center;
         position: relative;
         gap: 0px;
+        font-size: 1rem;
 
         & .delete{
             position: absolute;
@@ -68,8 +69,8 @@ const CartBlock = styled.div`
         }
 
         & img{
-            width: 150px;   
-            height: 150px; 
+            width: 120px;   
+            height: 120px; 
             object-fit: contain; 
         }
 
@@ -79,10 +80,10 @@ const CartBlock = styled.div`
             width: 100%;
             gap: 10px; 
 
-            & h4 {
+            & p {
                 flex: 1; 
                 text-align: left; 
-                font-size: 18px;
+                font-size: 1rem;
             }
         }
         & .cartItemCount{
@@ -113,17 +114,29 @@ const CartBlock = styled.div`
             }
         }
 
+        @media (max-width: 800px) {
+            font-size: 0.8rem;
+            & img{
+                width: 100px;   
+                height: 100px; 
+            }
+            & .cartItemTitle{
+                & p {
+                    font-size: 0.8rem;
+                }
+            }
+        }
     }
     .cartSubtotal{
         & p{
             margin: 30px 0 5px 0 ;
-            font-size: 20px;
+            font-size: 18px;
         }
         
         &::before{
             content: "";
             width: 100vw;
-            border: 1px solid #c2c2c2;
+            border: 1px solid #e2e2e2;
             display: block;
         }
     }
@@ -213,7 +226,7 @@ const Cart = (): JSX.Element => {
                         <Link to={`/product/${item.id}`} className="a">
                             <div className="cartItemTitle">
                                 <img src={item.image} alt={item.title} />
-                                <h4>{item.title}</h4>
+                                <p>{item.title}</p>
                             </div>
                         </Link>
                             <div className="cartItemCount">
