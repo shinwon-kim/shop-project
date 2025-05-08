@@ -22,8 +22,8 @@ const HomeWrapper = styled.div`
     padding-bottom: 70px;
   }
   @media (max-width: 500px) {
-    padding-top: 0px; 
-    padding-bottom: 30px;
+    padding-top: 10px; 
+    padding-bottom: 50px;
   }
 `;
 
