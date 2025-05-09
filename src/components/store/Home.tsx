@@ -9,38 +9,29 @@ const HomeWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   min-height: 100vh;
-  padding-top: 110px; 
+  padding-top: 110px;
   padding-bottom: 190px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: flex-start;
+  gap: 40px;
   margin: 0 auto;
-
-  @media (max-width: 800px) {
-    padding-top: 30px; 
-    padding-bottom: 70px;
-  }
-  @media (max-width: 500px) {
-    padding-top: 20px; 
-    padding-bottom: 60px;
-  }
 `;
 
 const Banner = styled.div`
   width: 100%;
-  height: clamp(15rem, 25vw, 25rem);
   display: flex;
   justify-content: center;
   align-items: center;
 
-    img {
+  img {
     width: 100%;
-    height: auto;
-    max-height: 100%;
+    min-height: 260px;
+    max-height: 360px;
     object-fit: contain;
     display: block;
-  }
+  }  
 `;
 
 const HomeBlock = styled.div`
